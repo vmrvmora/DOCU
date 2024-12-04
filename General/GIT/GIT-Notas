@@ -109,7 +109,15 @@ git checkout rama-villanos
 
 
 ... deshacer cambios a commit 4i3500w9i0 en fichero miembros.md
+	... vemos todos los cambios
+	git l
+	...
+	fasd50fd0d cambios a miembros.md
+	4i3500w9i0 cambios a pp.md
+	...
+	... cogemos el hash de antes del cambio y revertimos los cambios usando dicho hash y el fichero
 	git checkout 4i3500w9i0 miembros.md
+	git commit -am "..."
 
 # _TAGS
 git tag
