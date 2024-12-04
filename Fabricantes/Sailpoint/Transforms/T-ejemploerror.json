@@ -1,0 +1,131 @@
+"attributes": {
+
+"negativeCondition": "$department",
+
+"date": {
+
+"attributes": {
+
+"input": {
+
+"attributes": {
+
+"expression": "now",
+
+"roundUp": true
+
+},
+
+"type": "dateMath"
+
+},
+
+"inputFormat": "ISO8601",
+
+"outputFormat": "yyyy-MM-dd"
+
+},
+
+"type": "dateFormat"
+
+},
+
+"expression": "$lcs eq inactive",
+
+"positiveCondition": {
+
+"attributes": {
+
+"value": "#if($old == 'Disabled')$oldValue#{else}Disabled $date by IdentityNow#end"
+
+},
+
+"type": "static"
+
+},
+
+"old": {
+
+"attributes": {
+
+"input": {
+
+"attributes": {
+
+"values": [
+
+"$oldValue",
+
+""
+
+],
+
+"ignoreErrors": "true"
+
+},
+
+"type": "firstValid"
+
+},
+
+"delimiter": " ",
+
+"index": 0.0
+
+},
+
+"type": "split"
+
+},
+
+"department": {
+
+"attributes": {
+
+"attributeName": "DEPARTMENT_ID",
+
+"sourceName": "ADP"
+
+},
+
+"type": "accountAttribute"
+
+},
+
+"lcs": {
+
+"attributes": {
+
+"values": [
+
+{
+
+"attributes": {
+
+"name": "DetermineLifecycleState_v3"
+
+},
+
+"type": "rule"
+
+},
+
+"null"
+
+],
+
+"ignoreErrors": "true"
+
+},
+
+"type": "firstValid"
+
+}
+
+},
+
+"id": "Common - Department",
+
+"type": "conditional"
+
+}

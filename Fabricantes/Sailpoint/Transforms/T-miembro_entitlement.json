@@ -1,0 +1,26 @@
+{
+  "attributes": {
+    "input": {
+      "attributes": {
+        "values": [
+          {
+            "attributes": {
+              "accountPropertyFilter": "(memberOf.contains(\"All AD Users-rshwart\"))",
+              "attributeName": "sAMAccountName",
+              "sourceName": "Active Directory"
+            },
+            "type": "accountAttribute"
+          },
+          "FALSE"
+        ]
+      },
+      "type": "firstValid"
+    },
+    "table": {
+      "FALSE": "FALSE",
+      "default": "TRUE"
+    }
+  },
+  "id": "Contains IT Access",
+  "type": "lookup"
+}

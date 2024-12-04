@@ -1,0 +1,29 @@
+{
+  "name": "Identity-Department",
+  "type": "lookup",
+  "attributes": {
+    "table": {
+      "Value to Replace1": "ReplacementValue1",
+      "Value to Replace2": "ReplacementValue2",
+      "default": {
+        "type": "firstValid",
+        "attributes": {
+          "values": [
+            {
+              "type": "substring",
+              "attributes": {
+                "begin": 0
+              }
+            },
+            {
+              "type": "static",
+              "attributes": {
+                "value": "Unknown"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
