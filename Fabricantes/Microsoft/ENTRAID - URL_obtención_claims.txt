@@ -1,3 +1,4 @@
+#TExTO explicativo de EntraID
 Tenant ID:		5cbfac5d-95c4-4d6c-9a57-266a3fb24345
 Client ID app1:	464d2325-313c-4341-ae02-ae30d6a01b39
 Client ID app3: 27bfab69-f23c-42ab-bc1f-363851710dc6
