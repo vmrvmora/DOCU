@@ -1,0 +1,154 @@
+git init
+git status
+git add .
+# eliminación de un archivo o carpeta del "stage"
+git reset .DS_Store
+git log
+git config --global -e          ### edición vi de las configuraciones globales
+git config --global
+git commit -m Primer commit
+
+# Extraer el archivo del stage
+git reset .DS_Store
+
+git config --global init.defaultBranch main
+git config --global user.mail victor.morales@vasscompany.com
+# reponer el repositorio a como estaba en ultimo commit
+git checkout -- .
+git branch
+git branch -m master main
+git config --list
+#Alias
+git config --global alias.s status --short
+git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+# Eliminiación avisos de LF...
+git config core.autocrlf true
+
+
+# Edición del último commit
+git commit --amend
+
+# stage y commit
+git commit -am "Agregamos a Linterna Verde"
+
+## Deshacer un commit para añadirle modificaciones añadidas de nuevo
+git commit -am "Heroes.md: agregamos Linterna verde"
+git reset --soft 73584f ....puntero previo al HEAD
+
+
+# deshacer commits hasta un cierto puntero
+* d16c757 - (62 seconds ago) Heroes.md: agregamos Linterna verde y ROBIN - vmrvmora (HEAD -> main)
+* 73584f0 - (87 minutes ago) Agregamos historia batman y superman - vmrvmora
+* af07a98 - (88 minutes ago) Agregamos ciudades - vmrvmora
+* 7bbed87 - (89 minutes ago) Agregamos heroes - vmrvmora
+* 412e685 - (2 hours ago) Agregamos misiones - vmrvmora
+* ca98f4f - (2 hours ago) Readme agregado - vmrvmora
+
+
+git reset --mixed af07a98
+git lg
+* af07a98 - (2 hours ago) Agregamos ciudades - vmrvmora (HEAD -> main)
+* 7bbed87 - (2 hours ago) Agregamos heroes - vmrvmora
+* 412e685 - (2 hours ago) Agregamos misiones - vmrvmora
+* ca98f4f - (2 hours ago) Readme agregado - vmrvmora
+
+
+# Borrado de los cambios hasta cierto punto
+git reset --hard af07a98
+
+
+# Listar todos los cambios
+# Recuperación cambios borrados con reset hard
+git reflog
+
+412e685 (HEAD -> main) HEAD@{0}: reset: moving to 412e685
+7bbed87 HEAD@{1}: reset: moving to 7bbed87
+af07a98 HEAD@{2}: reset: moving to af07a98
+af07a98 HEAD@{3}: reset: moving to af07a98
+d16c757 HEAD@{4}: commit: Heroes.md: agregamos Linterna verde y ROBIN
+73584f0 HEAD@{5}: reset: moving to 73584f0
+0ce9240 HEAD@{6}: commit (amend): Heroes.md: Agregamos a Linterna Verde
+839d2e9 HEAD@{7}: commit: Agregamos a Linterna Verde
+73584f0 HEAD@{8}: commit (amend): Agregamos historia batman y superman
+afda301 HEAD@{9}: commit: Agregamos carpeta historia
+af07a98 HEAD@{10}: commit: Agregamos ciudades
+7bbed87 HEAD@{11}: commit: Agregamos heroes
+412e685 (HEAD -> main) HEAD@{12}: commit: Agregamos misiones
+ca98f4f HEAD@{13}: commit (initial): Readme agregado
+
+
+# volver a rehacer los cambios hasta 0ce9240
+git reset --hard d16c757
+* d16c757 - (19 minutes ago) Heroes.md: agregamos Linterna verde y ROBIN - vmrvmora (HEAD -> main)
+* 73584f0 - (2 hours ago) Agregamos historia batman y superman - vmrvmora
+* af07a98 - (2 hours ago) Agregamos ciudades - vmrvmora
+* 7bbed87 - (2 hours ago) Agregamos heroes - vmrvmora
+* 412e685 - (2 hours ago) Agregamos misiones - vmrvmora
+* ca98f4f - (2 hours ago) Readme agregado - vmrvmora
+
+
+
+# mover y borrar
+git mv ...
+git rm ...
+
+git reset --hard ... parecido a git checkout -- .
+
+
+#### RAMAS creación y switch
+git branch rama-villanos
+git checkout rama-villanos
+... los dos comandos en uno: git checkout -b rama-villanos
+
+... trabajamos en rama-villanos
+... hacemos switch a rama "master":                 git checkout master
+... fusionamos en master los cambios de la otra:    git merge rama-villanos
+... borramos la rama ya fusionada:                  git branch -d rama-villanos
+
+
+# _TAGS
+git tag
+git tag -a v1_0 -m "Versión v1_0 conectores AD"
+git tag -a v0.1.0 a712b50 -m "Versión preliminar"
+git show v0.1.0
+
+
+# _GITHUB
+…or create a new repository on the command line
+    echo "# udemy-githeroes" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin https://github.com/vmrvmora/udemy-githeroes.git
+    git push -u origin main
+
+	### modificar el remote origin
+	... git remote set-url origin https://github.com/vmrvmora/LAB-Keycloak.git
+	... git remote add origin https://github.com/vmrvmora/LAB-Keycloak-bugtracker_multi_idp.git
+	... git remote add origin https://github.com/vmrvmora/SP-Repositorio.git
+
+…or push an existing repository from the command line
+    git remote add origin https://github.com/vmrvmora/udemy-githeroes.git
+    git branch -M main
+    git push -u origin main     ### -u los próximos push recuerdan esta configuración!!!
+
+    git push --tags             ### subir tags
+
+    git remote -v               ### visualizar los remotos ORIGEN (es una etiqueta)
+
+### Sincronizar datos de GITHUB a local
+    git pull                    ###
+    git pull origin main        ### si queremos especificar, pero se guarda lo que se especificó en git push -u....
+
+git config --global pull.ff only ## configurar globalmente que en los pull solo queremos que se hagan en modo fastforwar (limpio)
+git config --global -e
+    [pull]
+            ff = only
+
+
+git config pull.rebase true ##
+
+### Traer cambios con FETCH sin actualizar local del todos
+git FETCH   ### normalmente se puede hacer un fetch antes de un pull, para ver como anda la cosa en GITHUB

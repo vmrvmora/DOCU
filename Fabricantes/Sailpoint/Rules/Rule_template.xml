@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="SampleSource BeforeCreate" type="ConnectorBeforeCreate">
+    <Attributes>
+        <Map>
+            <entry key="ObjectOrientedScript" value="true" />
+            <entry key="disabled" value="false" />
+            <entry key="extension" value=".ps1" />
+            <entry key="program" value="powershell.exe" />
+            <entry key="timeout" value="300" />
+        </Map>
+    </Attributes>
+    <Description>
+        This is an IQService afterScript - On a successful provisioning event, this after script should be used as the starting point to
+        initiate a separate PowerShell script residing on the client's IQService server.
+
+        Configuration tasks include the following:
+        - Set a proper location for the $logFile variable.
+        - Set the proper script location and name for the $command variable.
+        - Set the $enableDebug flag to $true or $false to toggle debug mode.
+    </Description>
+    <Source>
+        <![CDATA[
+
+$logDate = Get-Date -UFormat "%Y%m%d"
+$logFile = "c:\SailPoint\Scripts\Logs\ConnectorAfterCreate_$logDate.log"
+$command = "c:\SailPoint\Scripts\SampleSource-AfterCreate.ps1"
+$enableDebug = $false
+
+#====================-------Helper functions-------====================
+function LogToFile([String] $info) {
+    $info | Out-File $logFile -Append
+}
+
+#====================-------Get the request object-------====================
+Try{
+    if($enableDebug) {
+        LogToFile("Entering SailPoint rule")
+    }
+
+    Add-type -path utils.dll;
+ $sReader = New-Object System.IO.StringReader([System.String]$env:Request);
+ $xmlReader = [System.xml.XmlTextReader]([sailpoint.utils.xml.XmlUtil]::getReader($sReader));
+ $requestObject = New-Object Sailpoint.Utils.objects.AccountRequest($xmlReader);
+    $requestAsString = $env:Request
+
+    if($enableDebug) {
+        LogToFile("Request as XML object is: $requestAsString")
+    }
+
+    #Call the client script
+    $command = -join ($command, " -requestString '$requestAsString'")
+    Invoke-Expression $command
+
+}Catch{
+ $ErrorMessage = $_.Exception.Message
+   $ErrorItem = $_.Exception.ItemName
+   LogToFile("Error: Item = $ErrorItem -> Message = $ErrorMessage")
+}
+
+if($enableDebug) {
+    LogToFile("Exiting SailPoint rule")
+}
+
+]]>
+    </Source>
+</Rule>
