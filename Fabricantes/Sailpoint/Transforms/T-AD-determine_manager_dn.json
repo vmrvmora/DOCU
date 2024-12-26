@@ -1,0 +1,10 @@
+{
+  "attributes":  {
+    "attributeName": "distinguishedName",
+    "name": "Cloud Services Deployment Utility",
+    "operation": "getReferenceIdentityAttribute",
+    "uid": "manager"
+  },
+  "name": "Determine Manager DN",
+  "type": "rule"
+}

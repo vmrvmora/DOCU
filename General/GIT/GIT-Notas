@@ -115,7 +115,8 @@ git checkout rama-villanos
 	fasd50fd0d cambios a miembros.md
 	4i3500w9i0 cambios a pp.md
 	...
-	... cogemos el hash de antes del cambio y revertimos los cambios usando dicho hash y el fichero
+	
+	!!!! ... cogemos el hash de antes del cambio y revertimos los cambios usando dicho hash y el fichero
 	git checkout 4i3500w9i0 miembros.md
 	git commit -am "..."
 

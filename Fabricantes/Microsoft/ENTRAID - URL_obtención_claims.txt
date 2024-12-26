@@ -1,9 +1,14 @@
 #TExTO explicativo de EntraID
-Tenant ID:		5cbfac5d-95c4-4d6c-9a57-266a3fb24345
-Client ID app1:	464d2325-313c-4341-ae02-ae30d6a01b39
-Client ID app3: 27bfab69-f23c-42ab-bc1f-363851710dc6
+_TENANTS_
+	Tenant ID:					5cbfac5d-95c4-4d6c-9a57-266a3fb24345
+	Client ID app1:				464d2325-313c-4341-ae02-ae30d6a01b39
+	Client ID app3: 			27bfab69-f23c-42ab-bc1f-363851710dc6
+	
+	Tenant ID (velez): 			1948529e-b691-49fd-bc4c-8a4e5015fc21
+	Client ID bugtracker_01:	e9691cfa-fc5b-4b45-aaaa-5ad7f38cd787 
 
-URL genérica acceso a aplicación:
+_Acceso_apps_
+	URL genérica acceso a aplicación:
 	https://login.microsoftonline.com/TENANTID/oauth2/v2.0/authorize?client_id=CLIENTID&response_type=id_token&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20profile%20email&response_mode=fragment&state=12345&nonce=678910
 
 __Configuración
@@ -16,6 +21,10 @@ app1:
 
 app3:
 	https://login.microsoftonline.com/5cbfac5d-95c4-4d6c-9a57-266a3fb24345/oauth2/v2.0/authorize?client_id=27bfab69-f23c-42ab-bc1f-363851710dc6&response_type=id_token&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20profile%20email&response_mode=fragment&state=12345&nonce=678910
+
+bugtracker_01:
+https://login.microsoftonline.com/1948529e-b691-49fd-bc4c-8a4e5015fc21/oauth2/v2.0/authorize?client_id=e9691cfa-fc5b-4b45-aaaa-5ad7f38cd787&response_type=id_token&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20profile%20email&response_mode=fragment&state=12345&nonce=678910
+
 	
 
 app1:
